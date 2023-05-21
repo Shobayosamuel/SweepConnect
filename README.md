@@ -61,7 +61,7 @@ We will be using a combination of manual and automated testing to ensure the qua
 
 - Tidy: Tidy is a platform that connects users with local cleaning professionals for one-time or recurring cleaning services. It charges users based on an hourly rate, and users can book services online.
 
-- Similarities and Differences:
+## Similarities and Differences:
 All of these solutions are on-demand home services platforms that allow users to request cleaning services from local professionals. They all charge users based on an hourly rate and provide a convenient online booking process. However, there may be differences in the types of cleaners available, pricing, and features offered.
 
 #### In this case, we do not intend to reimplement an existing solution but instead plan to create our own web app to provide a similar service. Our decision to create our own app is based on the need to provide a more personalized and user-friendly experience, as well as the potential to offer unique features and pricing options. We have studied existing solutions to identify their strengths and weaknesses, and will use this information to create an app that addresses these issues and provides a better user experience.
