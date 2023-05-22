@@ -1,9 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-
+from base_model import BaseModel 
 db = SQLAlchemy()
 
-class User(db.Model):
+class User(BaseModel):
     __tablename__ = 'users'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -16,7 +16,7 @@ class User(db.Model):
     def __repr__(self):
         return f"<User {self.name}>"
 
-class Cleaner(db.Model):
+class Cleaner(BaseModel):
     __tablename__ = 'cleaners'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -29,7 +29,7 @@ class Cleaner(db.Model):
     def __repr__(self):
         return f"<Cleaner {self.name}>"
 
-class Location(db.Model):
+class Location(BaseModel):
     __tablename__ = 'locations'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -45,7 +45,7 @@ class Location(db.Model):
     def __repr__(self):
         return f"<Location {self.street_address}, {self.city}>"
 
-class Booking(db.Model):
+class Booking(BaseModel):
     __tablename__ = 'bookings'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -59,7 +59,7 @@ class Booking(db.Model):
     def __repr__(self):
         return f"<Booking {self.id}>"
 
-class Payment(db.Model):
+class Payment(BaseModel):
     __tablename__ = 'payments'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -70,4 +70,3 @@ class Payment(db.Model):
 
     def __repr__(self):
         return f"<Payment {self.id}>"
-
