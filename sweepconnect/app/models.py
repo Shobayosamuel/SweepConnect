@@ -21,11 +21,17 @@ class Cleaner(models.Model):
         return self.user.username
 
 class Booking(models.Model):
+    STATUS_CHOICES = (
+            ('PENDING', 'Pending'),
+            ('PAID', 'Paid'),
+            ('COMPLETED', 'Completed'),
+            ('CANCELLED', 'Cancelled'),
+            )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     cleaner = models.ForeignKey(Cleaner, on_delete=models.CASCADE)
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
-    status = models.CharField(max_length=20)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
     total_cost = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
@@ -39,4 +45,4 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-                return f"Review {self.id}"
+               return f"Review {self.id}"
