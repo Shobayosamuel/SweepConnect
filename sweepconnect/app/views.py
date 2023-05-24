@@ -5,10 +5,11 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Cleaner, Booking
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
+stripe.api_key = "sk_test_51NBJzMHwpWY2djhNIdCJtCqAkgxZfXsrLY58SVh52pI0P5nlnJUUexnKu49sf0iuJkcf6WAqwxubQHh0xkjmILiX00xrbSCF8B"
 
 def index(request):
-    return HttpResponse("Hello Geeks")login_required
+    return HttpResponse("Hello Geeks")
+
 def home(request):
     user = request.user
     cleaners = Cleaner.objects.filter(location=user.location)
@@ -34,7 +35,8 @@ def payment(request, booking_id):
             payment_intent = stripe.PaymentIntent.create(
                     amount=booking.total_amount,
                     currency='usd',
-                    payment_method_types=['card']
+                    payment_method_types=['card'],
+                    receipt_email=request.user.email
             )
             return JsonResponse({'clientSecret': payment_intent.client_secret})
         return render(request, 'payment.html', {'booking': booking})
