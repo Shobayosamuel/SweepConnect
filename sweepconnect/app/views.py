@@ -28,15 +28,45 @@ def book_cleaner(request, cleaner_id):
 @login_required
 def payment(request, booking_id):
     try:
-        booking = Booking.objects.get(id=booking_id)                                    # Perform payment processing logic here
+        booking = Booking.objects.get(id=booking_id)
         if request.method == 'POST':
-            # Process the payment and update the booking status
-            booking.status = 'PAID'
-            booking.save()
-            return redirect('booked', booking_id=booking.id)
+            # Create a payment intent using Stripe API
+            payment_intent = stripe.PaymentIntent.create(
+                    amount=booking.total_amount,
+                    currency='usd',
+                    payment_method_types=['card']
+            )
+            return JsonResponse({'clientSecret': payment_intent.client_secret})
         return render(request, 'payment.html', {'booking': booking})
     except Booking.DoesNotExist:
         return redirect('home')
+
+@csrf_exempt
+def stripe_webhook(request):
+    payload = request.body
+    sig_header = request.headers['Stripe-Signature']
+    try:
+        event = stripe.Webhook.construct_event(
+                payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
+                )
+    except ValueError as e:
+        return JsonResponse({'error': str(e)}, status=400)
+    except stripe.error.SignatureVerificationError as e:
+        return JsonResponse({'error': str(e)}, status=400)
+
+    # Handle the Stripe webhook event
+    if event['type'] == 'payment_intent.succeeded':
+        # Update the booking status to 'PAID'
+        payment_intent = event['data']['object']
+        booking_id = payment_intent.metadata.get('booking_id')
+        if booking_id:
+            try:
+                booking = Booking.objects.get(id=booking_id)
+                booking.status = 'PAID'
+                booking.save()
+            except Booking.DoesNotExist:
+                pass
+    return JsonResponse({'status': 'success'})
 
 @login_required
 def booked(request, booking_id):
