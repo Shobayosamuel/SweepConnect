@@ -9,4 +9,7 @@ urlpatterns = [
     path('booked/<int:booking_id>/', views.booked, name='booked'),
     path('payment/<int:booking_id>/', views.payment, name='payment'),
     path('webhook/stripe/', views.stripe_webhook, name='stripe_webhook'),
+    path('signup', views.signup, name='signup'),
+    path('signin', views.signin, name='signin'),
+    path('logout', views.logout, name='logout'),
 ]
