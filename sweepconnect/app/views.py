@@ -3,7 +3,7 @@ import stripe
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Cleaner, Booking
+from .models import Cleaner, Booking, Profile
 from django.contrib.auth.models import User, auth
 
 stripe.api_key = "sk_test_51NBJzMHwpWY2djhNIdCJtCqAkgxZfXsrLY58SVh52pI0P5nlnJUUexnKu49sf0iuJkcf6WAqwxubQHh0xkjmILiX00xrbSCF8B"
@@ -14,7 +14,19 @@ def index(request):
 def home(request):
     user = request.user
     cleaners = Cleaner.objects.filter(location=user.location)
+    all_users = User.objects.all()
     return render(request, 'home.html', {'cleaners': cleaners})
+
+@login_required(login_url='signin')
+def profile(request, pk):
+    user_object = User.objects.get(username=pk)
+    user_profile = Profile.objects.get(user=user_object)
+
+    context = {
+        'user_object': user_object,
+        'user_profile': user_profile,
+    }
+    return render(request, 'profile.html', context)
 
 @login_required
 def book_cleaner(request, cleaner_id):
