@@ -4,7 +4,7 @@
 Shobayo Samuel - Fullstack developer
 
 ### Technologies:
-Html, css, javascript, python and flask
+Html, css, javascript, python and Django
 ### Challenge:
 The Portfolio Project is intended to solve the problem of connecting people who need cleaning services with local cleaners. The project aims to provide a platform that makes it easy for users to find reliable and affordable cleaners in their area, without having to spend a lot of time searching for them.
 
