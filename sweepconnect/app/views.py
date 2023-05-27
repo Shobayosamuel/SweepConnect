@@ -1,14 +1,20 @@
 from django.http import HttpResponse
 import stripe
+from itertools import chain
+from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Cleaner, Booking, Profile
-from django.contrib.auth.models import User, auth
+from .models import Cleaner, Booking, Profile, User
+from django.contrib.auth.models import auth
 
 stripe.api_key = "sk_test_51NBJzMHwpWY2djhNIdCJtCqAkgxZfXsrLY58SVh52pI0P5nlnJUUexnKu49sf0iuJkcf6WAqwxubQHh0xkjmILiX00xrbSCF8B"
 
 def index(request):
+    user_object = User.objects.get(username=request.user.username)
+    user_profile = Profile.objects.get(user=user_object)
+    all_users = User.objects.all()
+
     return HttpResponse("Hello Geeks")
 
 def home(request):
@@ -27,6 +33,28 @@ def profile(request, pk):
         'user_profile': user_profile,
     }
     return render(request, 'profile.html', context)
+
+@login_required(login_url='signin')
+def search(request):
+    user_object = User.objects.get(username=request.user.username)
+    user_profile = Profile.objects.get(user=user_object)
+    if request.method == 'POST':
+        location = request.POST['location']
+        username_object = User.objects.filter(location__icontains=location)
+        
+        username_profile = []
+        username_profile_list = []
+
+        for users in username_object:
+            username_profile.append(users.id)
+
+        for ids in username_profile:
+            profile_lists = Profile.objects.filter(id_user=ids)
+            username_profile_list.append(profile_lists)
+        
+        username_profile_list = list(chain(*username_profile_list))
+    return render(request, 'search.html', {'user_profile': user_profile, 'username_profile_list': username_profile_list})
+
 
 @login_required
 def book_cleaner(request, cleaner_id):

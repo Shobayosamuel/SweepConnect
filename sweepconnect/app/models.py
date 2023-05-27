@@ -1,8 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.contrib.auth import get_user_model
 
-User = get_user_model()
+class User(AbstractUser):
+    phone_number = models.CharField(max_length=20)
+    class Meta:
+        swappable = 'AUTH_USER_MODEL'
+    def __str__(self):
+        return self.username
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
