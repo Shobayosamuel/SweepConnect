@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Cleaner, Booking, Profile, User
 from django.contrib.auth.models import auth
+from django.contrib.auth.hashers import make_password, check_password
+
 
 stripe.api_key = "sk_test_51NBJzMHwpWY2djhNIdCJtCqAkgxZfXsrLY58SVh52pI0P5nlnJUUexnKu49sf0iuJkcf6WAqwxubQHh0xkjmILiX00xrbSCF8B"
 
