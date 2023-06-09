@@ -20,10 +20,13 @@ def index(request):
     return HttpResponse("Hello Geeks")
 
 def home(request):
-    user = request.user
-    cleaners = Cleaner.objects.filter(location=user.location)
-    all_users = User.objects.all()
-    return render(request, 'home.html', {'cleaners': cleaners})
+    # user = request.user
+    # user_object = User.objects.get(username=request.user.username)
+    # user_profile = Profile.objects.get(user=user_object)
+    # cleaners = Cleaner.objects.filter(location=user_profile.location)
+    # all_users = User.objects.all()
+    # return render(request, 'home.html', {'cleaners': cleaners})
+    return render(request, 'home.html')
 
 @login_required(login_url='signin')
 def profile(request, pk):

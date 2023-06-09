@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Oxygen+Mono&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <title>SweepConnect</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <h1>
+                    <a href="index.html"><span class="fas fa-code" aria-hidden="true"></span> SweepConnect</a>
+          </h1>
+        </li>
+        {% comment %} <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li> {% endcomment %}
+            <li>
+                <a href="https://www.linkedin.com/in/jen4web/" target="_blank">
+                    <span class="fab fa-linkedin" aria-hidden="true"></span>
+                    <span class="sr-only">LinkedIn</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.github.com/jen4web" target="_blank">
+                    <span class="fab fa-github-square" aria-hidden="true"></span>
+                    <span class="sr-only">Github</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'signup' %}" target="_blank" class="button">signup</a>
+            </li>
+            <li>
+                <a href="{% url 'signin' %}" target="_blank" class="button">login</a>
+            </li>
+        
+            <div class="wrapper">
+                <h2>Registration</h2>
+                <form action="#">
+                  <div class="input-box">
+                    <input type="text" placeholder="Enter your username" name='username' required>
+                  </div>
+                  <div class="input-box">
+                    <input type="password" placeholder="Create password" name='password' required>
+                  </div>
+                  
+                  <div class="input-box button">
+                    <input id='color' type="submit" name='submit' value="Submit">
+                  </div>
+                  <div class="input-box">
+                    <input type="password" placeholder="Confirm password" name='password2' required>
+                  </div>
+                  <div class="input-box">
+                    <input type="password" placeholder="Confirm password" name='password2' required>
+                  </div>
+                  <div class="input-box">
+                    <input type="password" placeholder="Confirm password" name='password2' required>
+                  </div>
+                  <div class="text">
+                    <h3>Don't have an account? <a href="{%  url 'signup' %}">SignUp now</a></h3>
+                  </div>
+                </form>
+              </div>
+            </ul>
+        </nav>
+</body>
+
+</html>

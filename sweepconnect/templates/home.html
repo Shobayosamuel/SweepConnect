@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Oxygen&family=Oxygen+Mono&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <title>SweepConnect</title>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li>
+                <h1>
+                    <a href="index.html"><span class="fas fa-code" aria-hidden="true"></span> SweepConnect</a>
+          </h1>
+        </li>
+        {% comment %} <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li> {% endcomment %}
+            <li>
+                <a href="https://www.linkedin.com/in/jen4web/" target="_blank">
+                    <span class="fab fa-linkedin" aria-hidden="true"></span>
+                    <span class="sr-only">LinkedIn</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://www.github.com/jen4web" target="_blank">
+                    <span class="fab fa-github-square" aria-hidden="true"></span>
+                    <span class="sr-only">Github</span>
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'signup' %}" target="_blank" class="button">signup</a>
+            </li>
+            <li>
+                <a href="{% url 'signin' %}" target="_blank" class="button">login</a>
+            </li>
+
+      </ul>
+    </nav>
+    <div class="gradient"></div>
+    <div class="section-blue">
+      <section id="projects">
+        <h2>Welcome to SweepConnect</h2>
+        <article>
+          <div class="text">
+            <h3>About us</h3>
+            
+            <p class="blackbox">
+                The Portfolio Project will help people who are in need of cleaning services, 
+                such as busy professionals, elderly individuals, and individuals with disabilities. 
+                The project will also benefit local cleaners who are looking for more work and want to 
+                connect with potential clients in their area.
+              {% comment %} <a href="https://frontendmasters.github.io/grid-flexbox-v2/"
+                >this</a
+              >, and multiple links look <a href="#">like this</a> and
+                <a href="#">like this</a>.
+                </p>
+                <h4>My favorite technologies include:</h4>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>UX</li>
+                </ul> {% endcomment %}
+                </div>
+                <img src="https://cdn.pixabay.com/photo/2021/01/18/16/56/woman-5928696_1280.jpg" alt="Christina Morillo at Pexels." />
+                </article>
+                </section>
+                </div>
+                <div class="gradient"></div>
+                <footer>
+                    
+                    <ul>
+                        <li>
+                            <a href="https://www.linkedin.com/in/jen4web" target="_blank">
+                                <span class="fab fa-linkedin" aria-hidden="true"></span>
+                                <span class="sr-only">LinkedIn</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.github.com/jen4web" target="_blank">
+                                <span class="fab fa-github-square" aria-hidden="true"></span>
+                                <span class="sr-only">Github</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mailto:jen@example.com">
+                                <span class="fas fa-envelope" aria-hidden="true"></span>
+                                <span class="sr-only">Email</span>
+                            </a>
+                        </li>
+                    </ul>
+                
+                </footer>
+</body>
+
+</html>
